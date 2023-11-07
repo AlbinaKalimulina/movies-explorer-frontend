@@ -1,0 +1,42 @@
+.header {
+  padding: 18px 0;
+  width: 100%;
+  max-width: 1280px;
+}
+
+.header_violet {
+  background-color: #F3C1F8;
+}
+
+.header__links-container {
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 89%;
+}
+
+.header__logo {
+  margin: auto;
+  padding-left: 70px;
+  width: 38px;
+  height: 38px;
+}
+
+.header__logo:hover {
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 768px) {
+
+  .header__logo {
+    padding-left: 30px;
+  }
+}
+
+
+@media screen and (max-width: 420px) {
+  .header__logo {
+    padding-left: 14px;
+  }
+}
