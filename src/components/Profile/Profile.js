@@ -2,9 +2,10 @@ import { Link } from "react-router-dom";
 
 function Profile() {
   return (
-    <>
+
+    <main className="main">
       <section className="profile">
-        <h2 className="profile__title">Привет, Виталий!</h2>
+        <h1 className="profile__title">Привет, Виталий!</h1>
 
         <form className="profile__container">
 
@@ -42,7 +43,8 @@ function Profile() {
 
         </form>
       </section>
-    </>
+    </main>
+
   );
 }
 

@@ -49,7 +49,7 @@
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 400px) {
   .promo {
     margin-left: 14px;
     margin-right: 14px;

@@ -176,7 +176,7 @@
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 400px) {
   .project__title {
     margin: 0 18px;
     padding-top: 70px;

@@ -95,6 +95,11 @@
   transition: 0.2s ease;
 }
 
+.register__button:hover{
+  opacity: 0.5;
+  transition: opacity 0.3s;
+}
+
 .register__bottom {
   color: #A0A0A0;
   font-weight: 400;
@@ -108,6 +113,12 @@
   cursor: pointer;
   text-decoration: none;
 }
+
+.register__link:hover{
+  opacity: 0.5;
+  transition: opacity 0.3s;
+}
+
 
 @media screen and (max-width: 768px) {
   .register__header {

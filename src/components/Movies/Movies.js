@@ -5,11 +5,13 @@ import Preloader from "./Preloader/Preloader.js";
 
 function Movies() {
   return (
-    <section className="movies">
-      <SearchForm />
-      <MoviesCardList />
-      <Preloader />
-    </section>
+    <main className="main">
+      <section className="movies">
+        <SearchForm />
+        <MoviesCardList />
+        <Preloader />
+      </section>
+    </main>
   )
 }
 

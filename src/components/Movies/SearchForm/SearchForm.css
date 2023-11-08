@@ -74,7 +74,8 @@
 }
 
 .searchform__btn:hover {
-  opacity: var(--btn-opacity);
+  opacity: 0.5;
+  transition: opacity 0.3s;
 }
 
 .searchform__filter-container {

@@ -84,6 +84,7 @@
   flex-direction: row;
   align-items: flex-start;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .menu__account-link-button {

@@ -88,6 +88,11 @@ textarea:focus {
   transition: 0.2s ease;
 }
 
+.login__button:hover{
+  opacity: 0.5;
+  transition: opacity 0.3s;
+}
+
 .login__button:disabled {
   background-color: #A0A0A0;
 }
@@ -107,7 +112,8 @@ textarea:focus {
 }
 
 .login__link:hover {
-  opacity: 0.8;
+  opacity: 0.5;
+  transition: opacity 0.3s;
 }
 
 @media screen and (max-width: 768px) {

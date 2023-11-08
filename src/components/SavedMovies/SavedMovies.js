@@ -4,10 +4,12 @@ import MoviesCardList from "../Movies/MoviesCardList/MoviesCardList.js";
 
 function SavedMovies() {
   return (
-    <section className="saved-movies">
-      <SearchForm />
-      <MoviesCardList />
-    </section>
+    <main className="main">
+      <section className="saved-movies">
+        <SearchForm />
+        <MoviesCardList />
+      </section>
+    </main>
   )
 }
 
