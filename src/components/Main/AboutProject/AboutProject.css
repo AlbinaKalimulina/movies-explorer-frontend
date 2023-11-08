@@ -195,6 +195,7 @@
     flex-direction: column;
     width: 100%;
     max-width: 284px;
+    align-items: center;
   }
 
   .project__item:last-of-type {
