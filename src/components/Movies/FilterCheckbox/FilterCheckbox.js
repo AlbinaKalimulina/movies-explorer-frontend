@@ -8,7 +8,7 @@ function FilterCheckbox() {
       <input
         type="checkbox"
         id="checkbox"
-        className="search__ckeck"
+        className="filter__ckeck"
         onChange={() => { changeShort(!short) }}
         checked={short}
       />

@@ -12,7 +12,7 @@ const Login = () => {
         <h2 className="login__title">Рады видеть!</h2>
       </div>
 
-      <form className="login__form form">
+      <form className="login__form">
 
         <label className="login__label" htmlFor="email">
           E-mail

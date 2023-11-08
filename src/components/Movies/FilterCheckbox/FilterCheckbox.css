@@ -4,7 +4,7 @@
   align-self: center;
 }
 
-.search__ckeck {
+.filter__ckeck {
   margin-right: 14px;
   position: relative;
   display: inline-block;
@@ -19,7 +19,7 @@
   cursor: pointer;
 }
 
-.search__ckeck::after {
+.filter__ckeck::after {
   position: absolute;
   top: 2px;
   left: 2px;
@@ -31,11 +31,11 @@
   transition: 0.5s ease;
 }
 
-.search__ckeck:checked {
+.filter__ckeck:checked {
   background-color: #2BE080;
 }
 
-.search__ckeck:checked::after {
+.filter__ckeck:checked::after {
   position: absolute;
   top: 2px;
   right: 2px;

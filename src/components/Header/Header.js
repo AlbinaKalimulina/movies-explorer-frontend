@@ -13,7 +13,7 @@ const Header = ({ loggedIn }) => {
         <Link to="/">
           <img src={logo} alt="Логотип" className="header__logo" />
         </Link>
-        <Navigation loggedIn={loggedIn} className="header_violet" />
+        <Navigation loggedIn={loggedIn} className="header header_violet" />
       </div>
     </header>
   );

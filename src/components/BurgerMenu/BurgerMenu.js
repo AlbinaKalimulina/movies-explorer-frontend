@@ -7,7 +7,7 @@ function BurgerMenu({ onClose }) {
 
   return (
     <div className="menu">
-      <div className="burger__menu">
+      <div className="menu__burger">
         <div className="menu__container">
 
           <button
@@ -23,7 +23,7 @@ function BurgerMenu({ onClose }) {
                 <NavLink
                   exact
                   to="/"
-                  className={pathname === "/" ? "menu-link_active" : "menu-link"}
+                  className={pathname === "/" ? "menu__link_active" : "menu__link"}
                 >
                   Главная
                 </NavLink>
@@ -32,7 +32,7 @@ function BurgerMenu({ onClose }) {
               <div>
                 <NavLink
                   to="/movies"
-                  className={pathname === "/movies" ? "menu-link_active" : "menu-link"}
+                  className={pathname === "/movies" ? "menu__link_active" : "menu__link"}
                 >
                   Фильмы
                 </NavLink>
@@ -41,7 +41,7 @@ function BurgerMenu({ onClose }) {
               <div>
                 <NavLink
                   to="/saved-movies"
-                  className={pathname === "/saved-movies" ? "menu-link_active" : "menu-link"}
+                  className={pathname === "/saved-movies" ? "menu__link_active" : "menu__link"}
                 >
                   Сохранённые фильмы
                 </NavLink>
@@ -50,9 +50,9 @@ function BurgerMenu({ onClose }) {
             </div>
           </nav>
 
-          <Link to="/profile">
-              <button className="menu__account_button" type="button">Аккаунт</button>
-              <button className="account__logo" />
+          <Link to="/profile" className="menu__account-link">
+              <button className="menu__account-link-button" type="button">Аккаунт</button>
+              <button className="menu__account-link-logo" />
           </Link>
 
         </div>
