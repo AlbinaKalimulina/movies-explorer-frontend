@@ -26,6 +26,8 @@
 }
 
 .card__title {
+  margin: 0;
+  padding: 0;
   font-size: 13px;
   font-weight: 500;
   line-height: normal;
@@ -87,6 +89,8 @@
 }
 
 .card__duration {
+  margin: 0;
+  padding: 0;
   padding-right: 18px;
   font-size: 11px;
   font-weight: 400;
@@ -117,4 +121,12 @@
     padding: 0;
   }
 
+  .card__title{
+    margin-top: 16px;
+  }
+
+  .card__duration{
+    margin-top: 19px;
+    padding-right: 14px;
+  }
 }
