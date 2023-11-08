@@ -45,7 +45,7 @@
   opacity: 1;
 }
 
-.card__button_save {
+.card__save-button {
   background-color: #F9F9F9;
   border-radius: 30px;
   border: none;
@@ -58,11 +58,11 @@
   /* display: none; */
 }
 
-.card__button_save:hover {
+.card__save-button:hover {
   cursor: pointer;
 }
 
-.card__button_saved {
+.card__saved-button {
   background: url(../../../images/saved.svg) no-repeat center;
   border-radius: 50%;
   border: none;
@@ -71,11 +71,11 @@
   display: none;
 }
 
-.card__button_saved:hover {
+.card__saved-button:hover {
   cursor: pointer;
 }
 
-.card__button_delete {
+.card__delete-button {
   background: url(../../../images/delete.svg) no-repeat center;
   border-radius: 50%;
   border: none;
@@ -84,7 +84,7 @@
   display: none;
 }
 
-.card__button_delete:hover {
+.card__delete-button:hover {
   cursor: pointer;
 }
 

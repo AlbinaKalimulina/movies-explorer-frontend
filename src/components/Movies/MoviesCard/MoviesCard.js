@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import moviePoster from "../../../images/movie.png";
 
 function MoviesCard() {
@@ -13,9 +12,9 @@ function MoviesCard() {
       </div>
 
       <div className="card__button">
-          <button className="card__button_save" type="button">Сохранить</button>
-          <button className="card__button_saved" type="button"></button>
-          <button className="card__button_delete" type="button"></button>
+          <button className="card__save-button" type="button">Сохранить</button>
+          <button className="card__saved-button" type="button"></button>
+          <button className="card__delete-button" type="button"></button>
       </div>
     </li>
   );
