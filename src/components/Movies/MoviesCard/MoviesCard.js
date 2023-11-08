@@ -13,18 +13,9 @@ function MoviesCard() {
       </div>
 
       <div className="card__button">
-        <Link to="/movies">
           <button className="card__button_save" type="button">Сохранить</button>
-        </Link>
-
-        <Link to="/movies">
           <button className="card__button_saved" type="button"></button>
-        </Link>
-
-        <Link to="/saved-movies">
           <button className="card__button_delete" type="button"></button>
-        </Link>
-
       </div>
     </li>
   );

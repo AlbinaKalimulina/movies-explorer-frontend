@@ -4,6 +4,7 @@
   align-items: center;
   width: 100%;
   max-width: 1280px;
+  max-height: 950px;
 }
 
 .profile__title {
@@ -90,8 +91,12 @@
     margin-top: 96px;
   }
 
+  .profile__title {
+    margin-top: 230px;
+  }
+
   .profile__edit-button {
-    margin-top: 210px;
+    margin-top: 200px;
   }
 
   .profile__signout-link {
