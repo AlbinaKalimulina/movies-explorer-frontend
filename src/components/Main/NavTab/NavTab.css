@@ -28,7 +28,7 @@
   text-decoration-line: underline;
 }
 
-.panel__link:hover{
+.panel__link:hover {
   opacity: 0.5;
   transition: opacity 0.3s;
 }

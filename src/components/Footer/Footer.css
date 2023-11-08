@@ -77,13 +77,14 @@
   .footer__copyright {
     font-size: 12px;
     line-height: 15px;
-    margin-top: 30px;
+    margin-top: 20px;
   }
 
-  .footer__nav {
-    flex-direction: column;
-    row-gap: 12px;
+  .footer__links {
     margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
   }
 
   .footer__link {

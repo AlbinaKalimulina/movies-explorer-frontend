@@ -51,8 +51,8 @@ function BurgerMenu({ onClose }) {
           </nav>
 
           <Link to="/profile" className="menu__account-link">
-              <button className="menu__account-link-button" type="button">Аккаунт</button>
-              <button className="menu__account-link-logo" />
+            <button className="menu__account-link-button" type="button">Аккаунт</button>
+            <button className="menu__account-link-logo" />
           </Link>
 
         </div>

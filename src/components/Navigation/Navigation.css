@@ -83,8 +83,8 @@
 }
 
 
-.nav__button-account {
-  padding: 8px 13px;
+.nav__account-button {
+  padding: 8px 15px;
   border: none;
   cursor: pointer;
   transition: 0.3s ease;
@@ -123,6 +123,7 @@
   cursor: pointer;
   transition: 0.3s ease;
   display: none;
+  margin-right: 30px;
 }
 
 .burger__button:hover {
@@ -130,6 +131,10 @@
 }
 
 @media screen and (max-width: 768px) {
+
+  .nav__auth {
+    margin-right: 30px;
+  }
 
   .nav__movies,
   .nav__button-account,
@@ -143,6 +148,11 @@
 }
 
 @media screen and (max-width: 420px) {
+
+  .nav__auth {
+    margin-right: 13px;
+  }
+
   .nav__link {
     margin-right: 14px;
     font-size: 10px;
@@ -156,6 +166,6 @@
   .burger__button {
     padding: 0;
     width: 30px;
-    margin-right: 10px;
+    margin-right: 25px;
   }
 }

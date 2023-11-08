@@ -42,7 +42,7 @@ function Navigation({ loggedIn }) {
           </div>
           <div>
             <div className="nav__account">
-              <Link to="/profile" className="nav__button-account">
+              <Link to="/profile" className="nav__account-button">
                 Аккаунт
               </Link>
               <button className="nav__account-icon" />

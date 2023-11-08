@@ -1,5 +1,5 @@
 .card-list {
-  margin-top: 70px;
+  margin-top: 60px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -69,5 +69,11 @@
 
   .card-list__button {
     width: 240px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .card-list {
+    margin-top: 20px;
   }
 }
