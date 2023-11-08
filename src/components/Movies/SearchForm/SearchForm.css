@@ -50,6 +50,12 @@
   width: 100%;
 }
 
+.searchform__input:focus,
+textarea:focus {
+  outline: none;
+  box-shadow: 0 0 2px 2px #555;
+}
+
 .searchform__input::placeholder {
   color: #A0A0A0;
   font-size: 18px;

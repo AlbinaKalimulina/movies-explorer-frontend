@@ -57,6 +57,12 @@
   line-height: normal;
 }
 
+.register__input:focus,
+textarea:focus {
+  outline: none;
+  box-shadow: 0 0 2px 2px #555;
+}
+
 .register__input_password {
   all: unset;
   border-radius: 8px;
@@ -67,6 +73,12 @@
   font-size: 13px;
   font-weight: 400;
   line-height: normal;
+}
+
+.register__input_password:focus,
+textarea:focus {
+  outline: none;
+  box-shadow: 0 0 2px 2px #555;
 }
 
 .register__error {
