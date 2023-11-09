@@ -186,7 +186,7 @@
     font-size: 18px;
     line-height: normal;
     letter-spacing: -0.72px;
-    max-width: 284px;
+    max-width: 292px;
   }
 
   .project__info {
@@ -227,5 +227,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+}
+
+@media screen and (max-width: 320px) {
+
+  .project__title {
+    margin: 0 18px;
   }
 }
