@@ -206,7 +206,6 @@
 
   .project__info-title {
     margin-top: 0;
-    margin-bottom: 16px;
     font-size: 18px;
     line-height: normal;
     letter-spacing: -0.72px;
@@ -218,7 +217,7 @@
   }
 
   .project__scheme {
-    margin: 60px 18px 73px;
+    margin: 0 18px 73px;
     max-width: 284px;
   }
 

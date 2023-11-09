@@ -28,6 +28,7 @@
 .card__title {
   margin: 0;
   padding: 0;
+  margin-top: 14px;
   font-size: 13px;
   font-weight: 500;
   line-height: normal;
@@ -91,6 +92,7 @@
 .card__duration {
   margin: 0;
   padding: 0;
+  margin-top: 17px;
   padding-right: 18px;
   font-size: 11px;
   font-weight: 400;
@@ -99,6 +101,10 @@
 }
 
 @media screen and (max-width: 768px) {
+  .card{
+    margin-top: -5px;
+  }
+
   .card__image {
     max-width: 339px;
     max-height: 190px;
@@ -111,6 +117,7 @@
 }
 
 @media screen and (max-width: 625px) {
+
   .card__image {
     max-width: 300px;
     max-height: 168px;
