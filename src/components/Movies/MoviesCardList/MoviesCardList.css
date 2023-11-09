@@ -38,7 +38,7 @@
   opacity: 0.8;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1250px) {
   .card-list__container {
     margin-left: 30px;
     margin-right: 30px;
