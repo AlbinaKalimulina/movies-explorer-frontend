@@ -16,6 +16,8 @@ import PageNotFound from "../PageNotFound/PageNotFound.js";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.js";
 import CurrentUserContext from "../../contexts/CurrentUserContext.js"
 
+import mainApi from "../../utils/MainApi.js";
+
 function App() {
 
   const location = useLocation()
