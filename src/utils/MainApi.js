@@ -8,34 +8,34 @@ class MainApi {
     return res.ok ? res.json() : Promise.reject
   }
 
-  register(name, email, password) {
-    return fetch(`${this._url}/signup`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        name: name,
-        email: email,
-        password: password
-      })
-    })
-      .then(this._checkResponse)
-  };
+  // register(name, email, password) {
+  //   return fetch(`${this._url}/signup`, {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify({
+  //       name: name,
+  //       email: email,
+  //       password: password
+  //     })
+  //   })
+  //     .then(this._checkResponse)
+  // };
 
-  login(email, password) {
-    return fetch(`${this._url}/signin`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        email: email,
-        password: password
-      })
-    })
-      .then(this._checkResponse)
-  };
+  // login(email, password) {
+  //   return fetch(`${this._url}/signin`, {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify({
+  //       email: email,
+  //       password: password
+  //     })
+  //   })
+  //     .then(this._checkResponse)
+  // };
 
   getUserInfo() {
     return fetch(`${this._url}/users/me`, {
@@ -61,7 +61,7 @@ class MainApi {
       .then(this._checkResponse)
   }
 
-  getMovies() {
+  getSavedMovies() {
     return fetch(`${this._url}/movies`, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`
