@@ -13,6 +13,9 @@ import SavedMovies from "../SavedMovies/SavedMovies.js";
 
 import PageNotFound from "../PageNotFound/PageNotFound.js";
 
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.js";
+import CurrentUserContext from "../../contexts/CurrentUserContext.js"
+
 function App() {
 
   const location = useLocation()
