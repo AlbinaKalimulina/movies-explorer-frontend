@@ -75,6 +75,11 @@
   transition: opacity 0.2s;
 }
 
+.profile__edit-button_disabled {
+  cursor: default;
+  opacity: 0.7;
+}
+
 .profile__signout-link {
   margin-top: 16px;
   margin-bottom: 70px;
@@ -84,6 +89,16 @@
   font-size: 13px;
   font-weight: 500;
   line-height: normal;
+}
+
+.profile__span-error{
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  color: #EE3465;
+  max-width: 410px;
+  min-height: 24px;
+  text-align: right;
 }
 
 @media screen and (max-width: 768px) {

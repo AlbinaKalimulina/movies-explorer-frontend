@@ -108,7 +108,8 @@ class MainApi {
 }
 
 const mainApi = new MainApi({
-  baseUrl: 'api.albina-movies.nomoredomainsrocks.ru',
+  // baseUrl: 'api.albina-movies.nomoredomainsrocks.ru',
+    baseUrl: 'localhost:3000',
 });
 
 export default mainApi;
