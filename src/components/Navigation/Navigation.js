@@ -18,24 +18,24 @@ function Navigation({ loggedIn }) {
       {loggedIn ? (
         <>
           <div
-            className={pathname === '/' ? "nav__movies" : "nav__movies" }
+            className={pathname === '/' ? "nav__movies" : "nav__movies"}
           >
 
-              <Link
-               exact="true"
-                to="/movies"
-                className={pathname === "/movies" ? "nav__movies-link nav__movies-link_active" : "nav__movies-link"}
-              >
-                Фильмы
-              </Link>
+            <Link
+              exact="true"
+              to="/movies"
+              className={pathname === "/movies" ? "nav__movies-link nav__movies-link_active" : "nav__movies-link"}
+            >
+              Фильмы
+            </Link>
 
 
-              <Link
-                to="/saved-movies"
-                className={pathname === "/saved-movies" ? "nav__movies-link nav__movies-link_active" : "nav__movies-link"}
-              >
-                Сохранённые фильмы
-              </Link>
+            <Link
+              to="/saved-movies"
+              className={pathname === "/saved-movies" ? "nav__movies-link nav__movies-link_active" : "nav__movies-link"}
+            >
+              Сохранённые фильмы
+            </Link>
 
           </div>
 
@@ -44,17 +44,20 @@ function Navigation({ loggedIn }) {
             <Link to="/profile" className="nav__account-button">
               Аккаунт
             </Link>
-            <button className="nav__account-icon" />
+            <button
+              className={pathname === '/' ? 'nav__account-icon nav__account-icon-black' : 'nav__account-icon'}
+              type="button"
+            />
           </div>
 
           {!isBurgerMenuOpen ? (
             <div className="burger">
 
-                <button
-                  className={pathname === '/' ? 'burger__button' : 'burger__button' }
-                  onClick={toggleBurgerMenu}
-                  type="button"
-                />
+              <button
+                className={pathname === '/' ? 'burger__button' : 'burger__button'}
+                onClick={toggleBurgerMenu}
+                type="button"
+              />
 
             </div>
           ) : (

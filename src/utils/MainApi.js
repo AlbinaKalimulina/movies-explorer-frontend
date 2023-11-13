@@ -58,7 +58,7 @@ class MainApi {
       }
     })
       .then(this._checkResponse)
-      .catch(console.log("getUserInfo fetch error"))
+      // .catch(console.log("getUserInfo fetch error"))
   }
 
   setUserInfo(data) {
@@ -83,7 +83,7 @@ class MainApi {
       }
     })
       .then(this._checkResponse)
-      .catch(console.log("getSavedMovies fetch error"))
+      // .catch(console.log("getSavedMovies fetch error"))
   }
 
 

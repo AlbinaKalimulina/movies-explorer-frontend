@@ -115,6 +115,11 @@
   opacity: 0.8;
 }
 
+.nav__account-icon-black {
+  background: url('../../images/accoun_black.png') no-repeat center;
+  background-color: #000000;
+}
+
 .burger__button {
   background: none;
   background-image: url("../../images/burger.svg");
