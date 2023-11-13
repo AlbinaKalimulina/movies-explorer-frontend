@@ -4,9 +4,23 @@ class MainApi {
     this._url = options.baseUrl;
   }
 
+  // async _checkResponse(res) {
+  //   console.log("res", res)
+  //   // if (res.ok) {
+  //   //   const data = await res.json();
+  //   //   return data
+  //   // } else {
+  //   //   return Promise.reject
+  //   // }
+  //   return await res.ok ? res.json() : Promise.reject
+
+  // }
+
   _checkResponse(res) {
     return res.ok ? res.json() : Promise.reject
   }
+
+
 
   // register(name, email, password) {
   //   return fetch(`${this._url}/signup`, {
@@ -44,6 +58,7 @@ class MainApi {
       }
     })
       .then(this._checkResponse)
+      .catch(console.log("getUserInfo fetch error"))
   }
 
   setUserInfo(data) {
@@ -68,6 +83,7 @@ class MainApi {
       }
     })
       .then(this._checkResponse)
+      .catch(console.log("getSavedMovies fetch error"))
   }
 
 
@@ -109,7 +125,7 @@ class MainApi {
 
 const mainApi = new MainApi({
   // baseUrl: 'api.albina-movies.nomoredomainsrocks.ru',
-    baseUrl: 'localhost:3000',
+  baseUrl: 'http://127.0.0.1:3000',
 });
 
 export default mainApi;

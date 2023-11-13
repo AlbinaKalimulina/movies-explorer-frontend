@@ -94,6 +94,10 @@ textarea:focus {
   box-shadow: 0 0 2px 2px #555;
 }
 
+.register__input_error {
+  color: #EE3465;
+}
+
 .register__error {
   margin: 0;
   padding: 0;

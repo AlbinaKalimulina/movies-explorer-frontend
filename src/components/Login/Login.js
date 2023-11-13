@@ -71,7 +71,7 @@ function Login({ onLogin, isLoading }) {
 
           <input
                     className={`login__input ${
-                        userData.email.errorMessage && "login__form-input_error"
+                        userData.email.errorMessage && "login__input_error"
                     }`}
                     required
                     type="email"
@@ -102,7 +102,7 @@ function Login({ onLogin, isLoading }) {
 
           <input
                     className={`login__input ${
-                        userData.password.errorMessage && "login__form-input_error"
+                        userData.password.errorMessage && "login__input_error"
                     }`}
                     required
                     type="password"

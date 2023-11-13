@@ -21,7 +21,7 @@ function BurgerMenu({ onClose }) {
 
               <div>
                 <NavLink
-                  exact
+                  exact="true"
                   to="/"
                   className={pathname === "/" ? "menu__link_active" : "menu__link"}
                 >

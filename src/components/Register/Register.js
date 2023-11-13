@@ -75,7 +75,7 @@ function Register({ onRegister, isLoading }) {
           <label className="register__label">Имя</label>
 
           <input
-            className={`register__input ${userData.name.errorMessage && "register__form-input_error"
+            className={`register__input ${userData.name.errorMessage && "register__input_error"
               }`}
             required
             type="text"
@@ -106,7 +106,7 @@ function Register({ onRegister, isLoading }) {
           <label className="register__label">E-mail</label>
 
           <input
-            className={`register__input ${userData.email.errorMessage && "register__form-input_error"
+            className={`register__input ${userData.email.errorMessage && "register__input_error"
               }`}
             required
             type="email"
@@ -135,7 +135,7 @@ function Register({ onRegister, isLoading }) {
           <label className="register__label">Пароль</label>
 
           <input
-            className={`register__input ${userData.password.errorMessage && "register__form-input_error"
+            className={`register__input ${userData.password.errorMessage && "register__input_error"
               }`}
             required
             type="password"

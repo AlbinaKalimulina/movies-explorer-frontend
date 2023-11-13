@@ -31,27 +31,14 @@ function App() {
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
-  // const location = useLocation()
+  const withFooter =
+    pathname === "/" || pathname === "/movies" || pathname === "/saved-movies";
 
-  // const loggedIn = ({ pathname }) => Boolean(pathname !== '/')
-  // const withHeader = ({ pathname }) => Boolean(
-  //   ["/", "/profile", "/movies", "/saved-movies"].includes(pathname)
-  // )
-  // const withFooter = ({ pathname }) => Boolean(
-  //   ["/", "/movies", "/saved-movies"].includes(pathname)
-  // )
-
-  const withHeader = ["/movies", "/saved-movies", "/profile", "/"];
-  const withFooter = ["/movies", "/saved-movies", "/"];
-
-  // const withFooter =
-  //   pathname === "/" || pathname === "/movies" || pathname === "/saved-movies";
-
-  // const withHeader =
-  //   pathname === "/" ||
-  //   pathname === "/movies" ||
-  //   pathname === "/saved-movies" ||
-  //   pathname === "/profile";
+  const withHeader =
+    pathname === "/" ||
+    pathname === "/movies" ||
+    pathname === "/saved-movies" ||
+    pathname === "/profile";
 
   // стейты для пользователя
   const [currentUser, setCurrentUser] = useState({})//сюда будем класть юзера, его значение по умолчанию объект
@@ -59,28 +46,20 @@ function App() {
   const [isLoading, setIsLoading] = useState(false) //отвечает за отправку, изменяется в момент отправки
   const [isCheckToken, setIsCheckToken] = useState(true) //проверяет токен при каждом входе
   const [isInfoTooltipSuccess, setIsInfoTooltipSuccess] = useState(false)//отображает статус "успешно" при редактировании профиля (уведомляет пользователя о результате запроса к серверу)
- // const [infoTooltipOpen, setInfoTooltipOpen] = useState(false);
+  // const [infoTooltipOpen, setInfoTooltipOpen] = useState(false);
   // const [infoTooltipImage, setInfoTooltipImage] = useState(imageSuccess);
   // const [message, setMessage] = useState('');
 
-
-   // стейты для фильмов
+  // стейты для фильмов
   const [savedMovies, setSavedMovies] = useState([]) // фильмы, сохраненные пользователем, значение по умолчанию массив
   const [allMovies, setAllMovies] = useState([]); // загруженные фильмы при первом поиске
   const [foundMovies, setFoundMovies] = useState([]); // найденные фильмы
   const [savedMoviesList, setSavedMoviesList] = useState([]);
 
 
-  //   useEffect(() => {
-  //     tokenCheck();
-  // }, []);
-
   useEffect(() => {
-    // console.log(localStorage)
-    // if (loggedIn)
-    if (localStorage.token) {
-      console.log(localStorage)
-      Promise.all([mainApi.getUserInfo(localStorage.token), mainApi.getSavedMovies(localStorage.token)])
+    if (loggedIn) {
+      Promise.all([mainApi.getUserInfo(), mainApi.getSavedMovies()])
         .then(([dataUser, dataMovies]) => {
           setCurrentUser(dataUser)
           setSavedMovies(dataMovies.reverse())
@@ -125,6 +104,7 @@ function App() {
         if (res) {
           setIsInfoTooltipSuccess(true);
           navigate("/signin");
+          // handleLogin(email, password)
         }
       })
       .catch((err) => {
@@ -135,32 +115,6 @@ function App() {
   }
 
   //проверка наличия у пользователя токена
-
-  // function tokenCheck() {
-  //   const token = localStorage.getItem("token");
-  //   if (token) {
-  //     mainApi.getUserInfo()
-  //       .then((res) => {
-  //         if (res) {
-  //           setCurrentUser({
-  //             name: res.name,
-  //             email: res.email,
-  //             _id: res._id
-  //           });
-  //           setLoggedIn(true);
-  //         }
-  //       })
-  //       .catch((err) => {
-  //         if (err.status === 401) {
-  //           handleSignOut();
-  //         } else {
-  //           handleSignOut();
-  //         }
-  //       });
-  //   }
-  // }
-
-
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
@@ -180,7 +134,7 @@ function App() {
           console.log(err)
         });
     }
-  }, [navigate]);
+  }, []);
 
   //Выход из системы, удаляем всё из localStorage
   function handleSignOut() {
@@ -196,7 +150,7 @@ function App() {
   // Обновление данных пользователя
   function handleUpdateUser({ name, email }) {
     setIsLoading(true);
-    mainApi.updateUserInfo({ name, email }, localStorage.token)
+    mainApi.updateUserInfo({ name, email })
       .then((res) => {
         //обновляем стейт currentUser из полученных данных
         setCurrentUser({
@@ -230,12 +184,12 @@ function App() {
     // <CurrentUserContext.Provider value={currentUser}>
     <div className="page">
 
-{/* {isCheckToken ? <Preloader /> : */}
+      {/* {isCheckToken ? <Preloader /> : */}
 
       <CurrentUserContext.Provider value={currentUser}>
         {/* {withHeader(location) ? (<Header loggedIn={loggedIn(location)} />) : ('')} */}
         {/* {withHeader && <Header setLoggedIn={setLoggedIn} newEntrance={handleEntranceOnProfile}/>} */}
-        {withHeader && <Header setLoggedIn={setLoggedIn} />}
+        {withHeader && <Header loggedIn={loggedIn} />}
 
         <Routes>
 
@@ -314,8 +268,8 @@ function App() {
         {/* <InfoTooltip isOpen={false} onClose={() => { }} message={error} /> */}
         <InfoTooltip isOpen={false} onClose={() => { }} />
 
-        </CurrentUserContext.Provider>
-         {/* } */}
+      </CurrentUserContext.Provider>
+      {/* } */}
     </div>
     // </CurrentUserContext.Provider >
   );
