@@ -80,23 +80,12 @@ function Register({ onRegister, isLoading }) {
             required
             type="text"
             name="name"
-            placeholder="Виталий"
+            placeholder="Введите имя"
             minLength={2}
             maxLength={20}
             value={userData.name.value || ""}
             onChange={handleChange}
           />
-          {/*
-          <input
-            required
-            type="text"
-            name="name"
-            placeholder="Виталий"
-            minLength={2}
-            maxLength={20}
-            className="register__input"
-          /> */}
-          {/* <div className="register__error"></div> */}
 
           <span className="register__error">
             {userData.name.errorMessage}
@@ -111,22 +100,11 @@ function Register({ onRegister, isLoading }) {
             required
             type="email"
             name="email"
-            placeholder="pochta@yandex.ru"
+            placeholder="Введите e-mail"
             pattern="([A-z0-9_.-]{1,})@([A-z0-9_.-]{1,}).([A-z]{2,8})"
             value={userData.email.value || ""}
             onChange={handleChange}
           />
-
-          {/*
-          <input
-            required
-            type="email"
-            name="email"
-            placeholder="pochta@yandex.ru"
-            pattern="([A-z0-9_.-]{1,})@([A-z0-9_.-]{1,}).([A-z]{2,8})"
-            className="register__input"
-          /> */}
-          {/* <div className="register__error"></div> */}
 
           <span className="register__error">
             {userData.email.errorMessage}
@@ -146,17 +124,6 @@ function Register({ onRegister, isLoading }) {
             value={userData.password.value || ""}
             onChange={handleChange}
           />
-
-          {/* <input
-            required
-            type="password"
-            name="password"
-            placeholder="Пароль"
-            minLength={6}
-            maxLength={20}
-            className="register__input_password"
-          /> */}
-          {/* <div className="register__error">Что-то пошло не так...</div> */}
 
           <span className="register__error">
             {userData.password.errorMessage}

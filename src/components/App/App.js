@@ -21,8 +21,6 @@ import mainApi from "../../utils/MainApi.js";
 import * as auth from "../../utils/auth.js";
 
 import InfoTooltip from "../InfoTooltip/InfoTooltip.js";
-import imageSuccess from "../../images/image_success.svg";
-import imageError from '../../images/image_error.svg';
 
 import Preloader from "../Movies/Preloader/Preloader.js";
 
@@ -45,10 +43,6 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false) //отвечает за то, что пользователь залогинился
   const [isLoading, setIsLoading] = useState(false) //отвечает за отправку, изменяется в момент отправки
   const [isCheckToken, setIsCheckToken] = useState(true) //проверяет токен при каждом входе
-  const [isInfoTooltipSuccess, setIsInfoTooltipSuccess] = useState(false)//отображает статус "успешно" при редактировании профиля (уведомляет пользователя о результате запроса к серверу)
-  // const [infoTooltipOpen, setInfoTooltipOpen] = useState(false);
-  // const [infoTooltipImage, setInfoTooltipImage] = useState(imageSuccess);
-  // const [message, setMessage] = useState('');
 
   // стейты для фильмов
   const [savedMovies, setSavedMovies] = useState([]) // фильмы, сохраненные пользователем, значение по умолчанию массив
@@ -62,9 +56,8 @@ function App() {
       Promise.all([mainApi.getUserInfo(), mainApi.getSavedMovies()])
         .then(([dataUser, dataMovies]) => {
           setCurrentUser(dataUser)
-          setSavedMovies(dataMovies.reverse())
+          setSavedMovies(dataMovies)
           setLoggedIn(true)
-          setIsCheckToken(false)
         })
         .catch((error) => {
           console.log(error)
@@ -72,47 +65,6 @@ function App() {
     }
   }, [loggedIn])
 
-
-  // Авторизация пользователя
-  function handleLogin(email, password) {
-    setIsLoading(true);
-    auth
-      .login(email, password)
-      .then((res) => {
-        if (res && res.token) {
-          localStorage.setItem('token', res.token);
-          setLoggedIn(true)
-          navigate('/movies')
-          window.scrollTo(0, 0)
-          // .checkToken();
-        }
-      })
-      .catch((err) => {
-        setIsInfoTooltipSuccess(false);
-        // setIsInfoTooltipPopup(true);
-        console.log(err);
-      })
-      .finally(() => setIsLoading(true));
-  }
-
-  // Регистрация пользователя
-  function handleRegister(name, email, password) {
-    setIsLoading(true);
-    auth
-      .register(name, email, password)
-      .then((res) => {
-        if (res) {
-          setIsInfoTooltipSuccess(true);
-          navigate("/signin");
-          // handleLogin(email, password)
-        }
-      })
-      .catch((err) => {
-        setIsInfoTooltipSuccess(false);
-        console.log(err);
-      })
-      .finally(() => setIsLoading(true));
-  }
 
   //проверка наличия у пользователя токена
   useEffect(() => {
@@ -127,7 +79,6 @@ function App() {
             email: res.email,
             _id: res._id
           });
-          // navigate("/movies");
         })
         .catch((err) => {
           localStorage.removeItem('token');
@@ -135,6 +86,40 @@ function App() {
         });
     }
   }, []);
+
+  // Регистрация пользователя
+  function handleRegister(name, email, password) {
+    setIsLoading(true);
+    auth
+      .register(name, email, password)
+      .then((res) => {
+        if (res) {
+          navigate("/signin");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => setIsLoading(true));
+  }
+
+  // Авторизация пользователя
+  function handleLogin(email, password) {
+    setIsLoading(true);
+    auth
+      .login(email, password)
+      .then((res) => {
+        if (res && res.token) {
+          localStorage.setItem('token', res.token)
+          setLoggedIn(true)
+          navigate('/movies')
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => setIsLoading(true));
+  }
 
   //Выход из системы, удаляем всё из localStorage
   function handleSignOut() {
@@ -148,47 +133,29 @@ function App() {
   }
 
   // Обновление данных пользователя
-  function handleUpdateUser({ name, email }) {
+  function handleUpdateUser(name, email) {
     setIsLoading(true);
-    mainApi.updateUserInfo({ name, email })
+    mainApi.setUserInfo(name, email)
       .then((res) => {
         //обновляем стейт currentUser из полученных данных
         setCurrentUser({
           name: res.name,
           email: res.email
         });
-
-        //Попап успешного редактирования
-        // setInfoTooltipImage(imageSuccess);
-        // setMessage('Вы успешно изменили данные!');
-        // setInfoTooltipOpen(true);
       })
       .catch((err) => {
         console.log(err);
-
-        //Попап ошибки редактирования
-        // setInfoTooltipImage(imageError);
-        // setMessage('Что-то пошло не так! Попробуйте ещё раз.');
-        // setInfoTooltipOpen(true);
       })
       .finally(() => setIsLoading(false))
   }
 
-  // Закрытие попапов
-  function closeAllPopups() {
-    // setInfoTooltipOpen(false);
-  }
-
-
   return (
-    // <CurrentUserContext.Provider value={currentUser}>
     <div className="page">
 
       {/* {isCheckToken ? <Preloader /> : */}
 
       <CurrentUserContext.Provider value={currentUser}>
-        {/* {withHeader(location) ? (<Header loggedIn={loggedIn(location)} />) : ('')} */}
-        {/* {withHeader && <Header setLoggedIn={setLoggedIn} newEntrance={handleEntranceOnProfile}/>} */}
+
         {withHeader && <Header loggedIn={loggedIn} />}
 
         <Routes>
@@ -197,27 +164,17 @@ function App() {
             path="/"
             element={<Main />} />
 
-          {/* <Route
-            path="/signup"
-            element={<Register />} /> */}
-
           <Route path="/signup" element={
             <Register
               onRegister={handleRegister}
               isLoading={isLoading}
-            // registerError={registerError}
             />
           } />
-          {/*
-          <Route
-            path="/signin"
-            element={<Login />} /> */}
 
           <Route path="/signin" element={
             <Login
               onLogin={handleLogin}
               isLoading={isLoading}
-            // loginError={loginError}
             />
           } />
 
@@ -229,22 +186,13 @@ function App() {
             path="/saved-movies"
             element={<SavedMovies />} />
 
-          {/* <Route
-            path="/profile"
-            element={<Profile />} /> */}
 
           <Route path="/profile"
             element={
               <ProtectedRoute loggedIn={loggedIn}
                 element={Profile}
-                // onEditProfile={handleClickEditProfile}
-                // onUpdate={handleUpdateUser}
-                // updateError={updateError}
-                // isEditingProfile={isEditingProfile}
-                // isNewEntranceOnPage={isNewEntranceOnPage}
-
-                onUpdateUser={handleUpdateUser}
                 isLoading={isLoading}
+                onUpdateUser={handleUpdateUser}
                 onSignout={handleSignOut}
               />}
           />
@@ -255,23 +203,13 @@ function App() {
 
         </Routes>
 
-        {/* {withFooter(location) ? (<Footer />) : ('')} */}
         {withFooter && <Footer />}
 
-        {/* <InfoTooltip
-          isOpen={infoTooltipOpen}
-          onClose={closeAllPopups}
-          image={infoTooltipImage}
-          message={message}
-        /> */}
-
-        {/* <InfoTooltip isOpen={false} onClose={() => { }} message={error} /> */}
         <InfoTooltip isOpen={false} onClose={() => { }} />
 
       </CurrentUserContext.Provider>
       {/* } */}
     </div>
-    // </CurrentUserContext.Provider >
   );
 };
 

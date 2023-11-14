@@ -85,7 +85,7 @@ function Profile({ onUpdateUser, isLoading, onSignout }) {
 
     <main className="main">
       <section className="profile">
-        {/* <h1 className="profile__title">Привет, Виталий!</h1> */}
+
         <h1 className="profile__title">{`Привет, ${currentUser.name}!`}</h1>
 
         <form className="profile__container" onSubmit={handleSubmit} noValidate>
@@ -98,7 +98,7 @@ function Profile({ onUpdateUser, isLoading, onSignout }) {
               required
               type="text"
               name="name"
-              placeholder="Виталий"
+              placeholder="Введите имя"
               minLength={2}
               maxLength={20}
               className="profile__input"
@@ -118,7 +118,7 @@ function Profile({ onUpdateUser, isLoading, onSignout }) {
               required
               type="email"
               name="email"
-              placeholder="pochta@yandex.ru"
+              placeholder="Введите e-mail"
               className="profile__input"
               pattern="([A-z0-9_.-]{1,})@([A-z0-9_.-]{1,}).([A-z]{2,8})"
               value={userData.email.value || ""}
@@ -129,12 +129,6 @@ function Profile({ onUpdateUser, isLoading, onSignout }) {
           <span className="profile__span-error">
             {userData.email.errorMessage}
           </span>
-{/*
-          <button
-            className="profile__edit-button"
-            type="button">
-            Редактировать
-          </button> */}
 
           <button
             className={`profile__edit-button ${isValid && !isLoading ? "" : "profile__edit-button_disabled"

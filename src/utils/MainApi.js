@@ -4,52 +4,9 @@ class MainApi {
     this._url = options.baseUrl;
   }
 
-  // async _checkResponse(res) {
-  //   console.log("res", res)
-  //   // if (res.ok) {
-  //   //   const data = await res.json();
-  //   //   return data
-  //   // } else {
-  //   //   return Promise.reject
-  //   // }
-  //   return await res.ok ? res.json() : Promise.reject
-
-  // }
-
   _checkResponse(res) {
     return res.ok ? res.json() : Promise.reject
   }
-
-
-
-  // register(name, email, password) {
-  //   return fetch(`${this._url}/signup`, {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify({
-  //       name: name,
-  //       email: email,
-  //       password: password
-  //     })
-  //   })
-  //     .then(this._checkResponse)
-  // };
-
-  // login(email, password) {
-  //   return fetch(`${this._url}/signin`, {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify({
-  //       email: email,
-  //       password: password
-  //     })
-  //   })
-  //     .then(this._checkResponse)
-  // };
 
   getUserInfo() {
     return fetch(`${this._url}/users/me`, {
@@ -124,7 +81,7 @@ class MainApi {
 }
 
 const mainApi = new MainApi({
-  // baseUrl: 'api.albina-movies.nomoredomainsrocks.ru',
+  // baseUrl: 'https://api.albina-movies.nomoredomainsrocks.ru',
   baseUrl: 'http://127.0.0.1:3000',
 });
 

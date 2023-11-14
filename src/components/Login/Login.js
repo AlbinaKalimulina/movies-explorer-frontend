@@ -57,9 +57,9 @@ function Login({ onLogin, isLoading }) {
       <section className="login">
 
         <div className="login__header">
-          <a href="/">
+          <Link to="/">
             <img src={logo} alt="Логотип" className="login__logo" />
-          </a>
+          </Link>
           <h1 className="login__title">Рады видеть!</h1>
         </div>
 
@@ -70,76 +70,52 @@ function Login({ onLogin, isLoading }) {
           </label>
 
           <input
-                    className={`login__input ${
-                        userData.email.errorMessage && "login__input_error"
-                    }`}
-                    required
-                    type="email"
-                    name="email"
-                    placeholder="email"
-                    pattern="([A-z0-9_.-]{1,})@([A-z0-9_.-]{1,}).([A-z]{2,8})"
-                    value={userData.email.value || ""}
-                    onChange={handleChange}
-                />
-
-
-          {/* <input
+            className={`login__input ${userData.email.errorMessage && "login__input_error"
+              }`}
             required
             type="email"
             name="email"
-            placeholder="email"
-            className="login__input"
-          /> */}
-          {/* <span className="login__error"></span> */}
+            placeholder="Введите email"
+            pattern="([A-z0-9_.-]{1,})@([A-z0-9_.-]{1,}).([A-z]{2,8})"
+            value={userData.email.value || ""}
+            onChange={handleChange}
+          />
 
           <span className="login__error">
-                    {userData.email.errorMessage}
-                </span>
+            {userData.email.errorMessage}
+          </span>
 
           <label className="login__label" htmlFor="password">
             Пароль
           </label>
 
           <input
-                    className={`login__input ${
-                        userData.password.errorMessage && "login__input_error"
-                    }`}
-                    required
-                    type="password"
-                    name="password"
-                    placeholder="Пароль"
-                    minLength={6}
-                    maxLength={20}
-                    value={userData.password.value || ""}
-                    onChange={handleChange}
-                />
-
-          {/* <input
+            className={`login__input ${userData.password.errorMessage && "login__input_error"
+              }`}
             required
             type="password"
             name="password"
             placeholder="Пароль"
             minLength={6}
             maxLength={20}
-            className="login__input"
-          /> */}
-          {/* <span className="login__error"></span> */}
+            value={userData.password.value || ""}
+            onChange={handleChange}
+          />
 
           <span className="login__error">
-                    {userData.password.errorMessage}
-                </span>
+            {userData.password.errorMessage}
+          </span>
 
           {/* <button className="login__button" type="submit">Войти</button> */}
 
           <button
-                    className={`login__button ${
-                        isValid && !isLoading ? "" : "login__button_disabled"
-                    }`}
-                    type="submit"
-                    disabled={disabled}
-                >
-                    Войти
-                </button>
+            className={`login__button ${isValid && !isLoading ? "" : "login__button_disabled"
+              }`}
+            type="submit"
+            disabled={disabled}
+          >
+            Войти
+          </button>
 
         </form>
 
