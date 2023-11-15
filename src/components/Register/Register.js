@@ -118,7 +118,7 @@ function Register({ onRegister, isLoading }) {
             required
             type="password"
             name="password"
-            placeholder="Пароль"
+            placeholder="Введите пароль"
             minLength={6}
             maxLength={20}
             value={userData.password.value || ""}

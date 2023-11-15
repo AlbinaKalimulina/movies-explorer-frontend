@@ -28,6 +28,7 @@ function App() {
 
   const { pathname } = useLocation();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const withFooter =
     pathname === "/" || pathname === "/movies" || pathname === "/saved-movies";
@@ -39,18 +40,32 @@ function App() {
     pathname === "/profile";
 
   // стейты для пользователя
-  const [currentUser, setCurrentUser] = useState({})//сюда будем класть юзера, его значение по умолчанию объект
-  const [loggedIn, setLoggedIn] = useState(false) //отвечает за то, что пользователь залогинился
+  const [currentUser, setCurrentUser] = useState({})//сюда будем класть текущего пользователя, его значение по умолчанию объект
+  const [loggedIn, setLoggedIn] = useState(false) //статус входа в систему
   const [isLoading, setIsLoading] = useState(false) //отвечает за отправку, изменяется в момент отправки
-  const [isCheckToken, setIsCheckToken] = useState(true) //проверяет токен при каждом входе
+  // const [isCheckToken, setIsCheckToken] = useState(true) //проверяет токен при каждом входе
 
   // стейты для фильмов
   const [savedMovies, setSavedMovies] = useState([]) // фильмы, сохраненные пользователем, значение по умолчанию массив
-  const [allMovies, setAllMovies] = useState([]); // загруженные фильмы при первом поиске
-  const [foundMovies, setFoundMovies] = useState([]); // найденные фильмы
-  const [savedMoviesList, setSavedMoviesList] = useState([]);
+
+  // ошибки API
+  const [apiErrors, setApiErrors] = useState({
+    login: {},
+    register: {},
+    profile: {}
+  });
+
+  // Сброс ошибок API при изменении маршрута
+  useEffect(() => {
+    setApiErrors({
+      login: {},
+      register: {},
+      profile: {}
+    });
+  }, [location]);
 
 
+  // Получение информации о пользователе и сохраненных фильмах при входе в систему
   useEffect(() => {
     if (loggedIn) {
       Promise.all([mainApi.getUserInfo(), mainApi.getSavedMovies()])
@@ -60,13 +75,15 @@ function App() {
           setLoggedIn(true)
         })
         .catch((error) => {
-          console.log(error)
+          // console.log(error)
+          console.log(`Что-то пошло не так... (${error})`);
         })
     }
   }, [loggedIn])
 
 
   //проверка наличия у пользователя токена
+  // Проверка токена при загрузке приложения для автоматического входа
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
@@ -126,9 +143,6 @@ function App() {
     localStorage.clear();
     setLoggedIn(false);
     setCurrentUser({ name: "", email: "", _id: "" });
-    setFoundMovies([]);
-    setAllMovies([]);
-    setSavedMovies([]);
     navigate("/");
   }
 
@@ -142,12 +156,92 @@ function App() {
           name: res.name,
           email: res.email
         });
+        setApiErrors({ ...apiErrors, profile: {} });
       })
       .catch((err) => {
         console.log(err);
+        setApiErrors({ ...apiErrors, profile: err });
       })
       .finally(() => setIsLoading(false))
   }
+
+
+  // useEffect(() => {
+  //   loggedIn &&
+  //     localStorage.setItem('savedMovies', JSON.stringify(savedMovies));
+  // }, [savedMovies, loggedIn]);
+
+
+  // сохранение фильма
+  // function handleLikeMovie(movie, isLiked, id) {
+  //   if (isLiked) {
+  //     handleDeleteMovie(id);
+  //   } else {
+  //     mainApi
+  //       .saveMovie(movie)
+  //       .then((res) => {
+  //         setSavedMovies([...savedMovies, res]);
+  //         localStorage.setItem('savedMovies', JSON.stringify(savedMovies));
+  //         console.log(res);
+  //       })
+  //       .catch((err) => console.log(err));
+  //   }
+  // };
+
+
+
+  function handleLikeMovie(data) {
+    const isAdd = savedMovies.some(element => data.id === element.movieId)
+    const seachClickMovie = savedMovies.filter((movie) => {
+      return movie.movieId === data.id
+    })
+    if (isAdd) {
+      handleDeleteMovie(seachClickMovie[0]._id)
+    } else {
+      mainApi.addMovie(data, localStorage.jwt)
+        .then(res => {
+          setSavedMovies([res, ...savedMovies])
+        })
+        .catch((err) => console.error(`Ошибка при установке лайка ${err}`))
+    }
+  }
+
+
+  // удаление фильма
+  // function handleDeleteMovie(id) {
+  //   const searchedSavedMovies = JSON.parse(
+  //     localStorage.getItem('searchedSavedMovies')
+  //   );
+  //   mainApi
+  //     .deleteMovie(id)
+  //     .then((res) => {
+  //       const updatedSavedMovies = savedMovies.filter(
+  //         (movie) => movie._id !== id
+  //       );
+  //       setSavedMovies(updatedSavedMovies);
+  //       if (searchedSavedMovies) {
+  //         const updatedSearchedSavedMovies = searchedSavedMovies.filter(
+  //           (movie) => movie._id !== id
+  //         );
+
+  //         localStorage.setItem(
+  //           'searchedSavedMovies',
+  //           JSON.stringify(updatedSearchedSavedMovies)
+  //         );
+  //       }
+  //       console.log(res);
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
+
+  function handleDeleteMovie(deletemovieId) {
+    mainApi.deleteMovie(deletemovieId, localStorage.jwt)
+      .then(() => {
+        setSavedMovies(savedMovies.filter(movie => { return movie._id !== deletemovieId }))
+      })
+      .catch((err) => console.error(`Ошибка при удалении фильма ${err}`))
+  }
+
 
   return (
     <div className="page">
@@ -168,6 +262,7 @@ function App() {
             <Register
               onRegister={handleRegister}
               isLoading={isLoading}
+              apiErrors={apiErrors}
             />
           } />
 
@@ -175,16 +270,25 @@ function App() {
             <Login
               onLogin={handleLogin}
               isLoading={isLoading}
+              apiErrors={apiErrors}
             />
           } />
 
           <Route
             path="/movies"
-            element={<Movies />} />
+            element={<Movies />}
+            isLoading={isLoading}
+            savedMovies={savedMovies}
+            onLikeMovie={handleLikeMovie}
+          />
 
           <Route
             path="/saved-movies"
-            element={<SavedMovies />} />
+            element={<SavedMovies />}
+            isLoading={isLoading}
+            savedMovies={savedMovies}
+            onDeleteMovie={handleDeleteMovie}
+          />
 
 
           <Route path="/profile"
@@ -194,6 +298,7 @@ function App() {
                 isLoading={isLoading}
                 onUpdateUser={handleUpdateUser}
                 onSignout={handleSignOut}
+                apiErrors={apiErrors}
               />}
           />
 
