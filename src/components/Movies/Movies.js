@@ -127,21 +127,6 @@ function Movies({ savedMovies, onLikeMovie }) {
 export default Movies;
 
 
-// function Movies() {
-//   return (
-//     <main className="main">
-//       <section className="movies">
-//         <SearchForm />
-//         <MoviesCardList />
-//         <Preloader />
-//       </section>
-//     </main>
-//   )
-// }
-
-// export default Movies;
-
-
 
 
 

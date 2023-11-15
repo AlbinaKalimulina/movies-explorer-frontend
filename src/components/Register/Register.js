@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../images/logo.svg";
 
-function Register({ onRegister, isLoading }) {
+function Register({ onRegister, isLoading, apiErrors }) {
 
   const [userData, setUserData] = useState({
     name: {
@@ -81,6 +81,7 @@ function Register({ onRegister, isLoading }) {
             type="text"
             name="name"
             placeholder="Введите имя"
+            pattern="^[A-Za-zА-Яа-яЁё\\-\\s]+$"
             minLength={2}
             maxLength={20}
             value={userData.name.value || ""}
@@ -129,7 +130,7 @@ function Register({ onRegister, isLoading }) {
             {userData.password.errorMessage}
           </span>
 
-          {/* <button className="register__button" type="submit">Зарегистрироваться</button> */}
+          <span className="form__api-error">{apiErrors.login.errorText}</span>
 
           <button
             className={`register__button ${isValid && !isLoading ? "" : "register__button_disabled"

@@ -66,6 +66,7 @@ class MainApi {
       })
     })
       .then(this._checkResponse)
+      .catch((error) => console.log("addMovie fetch error", error));
   }
 
   deleteMovie(movieId) {
@@ -76,6 +77,7 @@ class MainApi {
       }
     })
       .then(this._checkResponse)
+      .catch((error) => console.log("deleteMovie fetch error", error));
   }
 
 }

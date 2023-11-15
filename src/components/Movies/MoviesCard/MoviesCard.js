@@ -11,7 +11,7 @@ function MoviesCard({ movie, savedMovies, onLikeMovie, onDeleteMovie }) {
     ? savedMovies.find((item) => item.movieId === movie.id)
     : '';
   const isLiked = savedMovies
-    ? savedMovies.some((i) => i.movieId === movie.id)
+    ? savedMovies.some((item) => item.movieId === movie.id)
     : false;
   const isDeleteButton = location.pathname === '/saved-movies';
   const imageUrl = movie.image.url
@@ -49,14 +49,14 @@ function MoviesCard({ movie, savedMovies, onLikeMovie, onDeleteMovie }) {
         {isLikeButton && (
           <button
             onClick={() => onLikeMovie(movie, isLiked, savedMovie?._id)}
-            className={`moviescard__like-btn ${isLiked ? ' moviescard__like-btn_liked' : ''}`}
+            className={`card__like-btn ${isLiked ? 'card__like-btn_liked' : ''}`}
             style={{ display: isHovered || window.innerWidth <= 767 ? 'block' : 'none' }}
           />
         )}
         {isDeleteButton && (
           <button
             onClick={() => onDeleteMovie(movie._id)}
-            className={`moviescard__delete-btn`}
+            className={`card__delete-btn`}
             style={{ display: isHovered || window.innerWidth <= 767 ? 'block' : 'none' }}
           />
         )}
