@@ -1,10 +1,10 @@
 import MoviesCard from "../MoviesCard/MoviesCard.js";
-import useResize from '../../../hooks/useResize.js';
+import useScreenResize from '../../../hooks/useScreenResize.js';
 import { useEffect, useMemo, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 function MoviesCardList({ movies, savedMovies, onLikeMovie, onDeleteMovie, isSavedMoviesPage }) {
-  let size = useResize();
+  let size = useScreenResize();
   const [moviesToAdd, setMoviesToAdd] = useState(0);
   const location = useLocation();
 

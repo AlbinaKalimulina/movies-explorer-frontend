@@ -101,7 +101,7 @@ function Movies({ savedMovies, onLikeMovie }) {
             ) : (
               searchedMovies && (
                 <p className="movies__not-found">
-                  По вашему запросу ничего не найдено
+                  Ничего не найдено
                 </p>
               )
             )}

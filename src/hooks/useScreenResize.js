@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const useResize = () => {
+const useScreenResize = () => {
   const [size, setSize] = useState({ width: 0, height: 0 });
 
   useEffect(() => {
@@ -16,4 +16,4 @@ const useResize = () => {
   return size;
 };
 
-export default useResize;
+export default useScreenResize;

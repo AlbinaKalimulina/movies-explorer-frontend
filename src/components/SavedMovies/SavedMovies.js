@@ -53,7 +53,7 @@ function SavedMovies({ savedMovies, onDeleteMovie }) {
         ) : (
           searchedMovies && (
             <p className="movies__not-found">
-              По вашему запросу ничего не найдено
+              Ничего не найдено
             </p>
           )
         )}
