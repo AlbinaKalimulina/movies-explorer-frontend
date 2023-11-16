@@ -106,8 +106,6 @@ function Login({ onLogin, isLoading }) {
             {userData.password.errorMessage}
           </span>
 
-          {/* <button className="login__button" type="submit">Войти</button> */}
-
           <button
             className={`login__button ${isValid && !isLoading ? "" : "login__button_disabled"
               }`}

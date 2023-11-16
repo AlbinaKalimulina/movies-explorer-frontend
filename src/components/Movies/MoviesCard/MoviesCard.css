@@ -34,61 +34,6 @@
   line-height: normal;
 }
 
-.card__button {
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  opacity: 0;
-  transition: opacity .5s ease-in-out;
-}
-
-.card:hover .card__button {
-  opacity: 1;
-}
-
-.card__save-button {
-  background-color: #F9F9F9;
-  border-radius: 30px;
-  border: none;
-  width: 72px;
-  height: 21px;
-  text-align: center;
-  font-size: 10px;
-  font-weight: 400;
-  line-height: 9px;
-  /* display: none; */
-}
-
-.card__save-button:hover {
-  cursor: pointer;
-}
-
-.card__saved-button {
-  background: url(../../../images/saved.svg) no-repeat center;
-  border-radius: 50%;
-  border: none;
-  width: 21px;
-  height: 21px;
-  /* display: none; */
-}
-
-.card__saved-button:hover {
-  cursor: pointer;
-}
-
-.card__delete-button {
-  background: url(../../../images/delete.svg) no-repeat center;
-  border-radius: 50%;
-  border: none;
-  width: 21px;
-  height: 21px;
-  /* display: none; */
-}
-
-.card__delete-button:hover {
-  cursor: pointer;
-}
-
 .card__duration {
   margin: 0;
   padding: 0;
@@ -100,8 +45,56 @@
   color: #A0A0A0;
 }
 
+
+.card__like-button {
+  background: no-repeat center/contain url('../../../images/save.svg');
+  position: absolute;
+  z-index: 1;
+  top: 14px;
+  right: 14px;
+  width: 72px;
+  height: 21px;
+  border: none;
+}
+
+.card__like-button_liked {
+  background: no-repeat center/contain url('../../../images/saved.svg');
+  padding: 0;
+  margin: 0;
+  width: 21px;
+  height: 21px;
+  border: none;
+  cursor: pointer;
+  transition: all .2s ease;
+  position: absolute;
+}
+
+.card__like-button:hover {
+  opacity: .8;
+}
+
+.card__delete-button {
+  background: no-repeat center/contain url('../../../images/delete.svg');
+  padding: 0;
+  margin: 0;
+  width: 21px;
+  height: 21px;
+  border: none;
+  cursor: pointer;
+  transition: all .2s ease;
+  position: absolute;
+  z-index: 1;
+  top: 14px;
+  right: 14px;
+}
+
+
+.card__delete-button:hover {
+  opacity: .8;
+}
+
 @media screen and (max-width: 768px) {
-  .card{
+  .card {
     margin-top: -5px;
   }
 
@@ -128,60 +121,12 @@
     padding: 0;
   }
 
-  .card__title{
+  .card__title {
     margin-top: 16px;
   }
 
-  .card__duration{
+  .card__duration {
     margin-top: 19px;
     padding-right: 14px;
   }
-}
-
-
-.card__like-btn {
-  background: no-repeat center/contain url('../../../images/save.svg');
-  position: absolute;
-  z-index: 1;
-  top: 14px;
-  right: 14px;
-  width: 72px;
-  height: 21px;
-  border: none;
-}
-
-.card__like-btn_liked {
-  background: no-repeat center/contain url('../../../images/saved.svg');
-  padding: 0;
-  margin: 0;
-  width: 21px;
-  height: 21px;
-  border: none;
-  cursor: pointer;
-  transition: all .2s ease;
-  position: absolute;
-}
-
-.card__like-btn:hover {
-  opacity: .8;
-}
-
-.card__delete-btn {
-  background: no-repeat center/contain url('../../../images/delete.svg');
-  padding: 0;
-  margin: 0;
-  width: 21px;
-  height: 21px;
-  border: none;
-  cursor: pointer;
-  transition: all .2s ease;
-  position: absolute;
-  z-index: 1;
-  top: 14px;
-  right: 14px;
-}
-
-
-.card__delete-btn:hover {
-  opacity: .8;
 }

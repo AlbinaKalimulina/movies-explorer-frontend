@@ -49,35 +49,19 @@ function MoviesCard({ movie, savedMovies, onLikeMovie, onDeleteMovie }) {
         {isLikeButton && (
           <button
             onClick={() => onLikeMovie(movie, isLiked, savedMovie?._id)}
-            className={`card__like-btn ${isLiked ? 'card__like-btn_liked' : ''}`}
+            className={`card__like-button ${isLiked ? 'card__like-button_liked' : ''}`}
             style={{ display: isHovered || window.innerWidth <= 767 ? 'block' : 'none' }}
           />
         )}
         {isDeleteButton && (
           <button
             onClick={() => onDeleteMovie(movie._id)}
-            className={`card__delete-btn`}
+            className={`card__delete-button`}
             style={{ display: isHovered || window.innerWidth <= 767 ? 'block' : 'none' }}
           />
         )}
 
       </div>
-
-
-      {/* <div className="card__button">
-        <Link to="/movies">
-          <button className="card__save-button" type="button">Сохранить</button>
-        </Link>
-
-        <Link to="/movies">
-          <button className="card__saved-button" type="button"></button>
-        </Link>
-
-        <Link to="/saved-movies">
-          <button className="card__delete-button" type="button"></button>
-        </Link>
-
-      </div> */}
 
     </li>
   );

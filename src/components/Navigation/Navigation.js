@@ -4,7 +4,6 @@ import BurgerMenu from "../BurgerMenu/BurgerMenu.js";
 
 function Navigation({ loggedIn }) {
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
-  const location = useLocation().pathname;
   const toggleBurgerMenu = () => {
     setIsBurgerMenuOpen(!isBurgerMenuOpen);
   };
@@ -80,18 +79,7 @@ function Navigation({ loggedIn }) {
           </div>
         </>
       )}
-      {/* {loggedIn &&
-                (!isBurgerMenuOpen ? (
-                  <div className="burger">
-                    <button
-                      className="burger__button"
-                      onClick={toggleBurgerMenu}
-                      type="button"
-                    />
-                  </div>
-                ) : (
-                  <BurgerMenu onClose={toggleBurgerMenu} />
-                ))} */}
+
     </nav>
   );
 };

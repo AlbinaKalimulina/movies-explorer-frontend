@@ -62,17 +62,3 @@ function SavedMovies({ savedMovies, onDeleteMovie }) {
   )
 }
 export default SavedMovies;
-
-
-// function SavedMovies() {
-//   return (
-//     <main className="main">
-//       <section className="saved-movies">
-//         <SearchForm />
-//         <MoviesCardList />
-//       </section>
-//     </main>
-//   )
-// }
-
-// export default SavedMovies;

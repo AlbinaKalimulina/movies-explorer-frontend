@@ -28,6 +28,8 @@ function MoviesCardList({ movies, savedMovies, onLikeMovie, onDeleteMovie, isSav
 
     return movies.slice(0, countToRender + moviesToAdd);
   }, [movies, moviesToAdd, size, isSavedMoviesPage]);
+
+
   return (
     <section className="card-list">
       <ul className="card-list__container">

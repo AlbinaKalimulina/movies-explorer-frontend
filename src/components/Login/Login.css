@@ -98,9 +98,9 @@ textarea:focus {
   transition: opacity 0.3s;
 }
 
-/* .login__button:disabled {
+.login__button:disabled {
   background-color: #A0A0A0;
-} */
+}
 
 .login__button_disabled {
   color: #C2C2C2;
