@@ -2,9 +2,10 @@ import { Link } from "react-router-dom";
 import React, { useContext, useEffect, useState } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext.js";
 
-function Profile({ onUpdateUser, isLoading, onSignout }) {
+function Profile({ onUpdateUser, isLoading, onSignout, apiErrors }) {
 
   const currentUser = useContext(CurrentUserContext);
+  const [isProfileSaved, setIsProfileSaved] = useState(false);
 
   const [userData, setUserData] = useState({
     name: {
@@ -79,6 +80,7 @@ function Profile({ onUpdateUser, isLoading, onSignout }) {
       name: userData.name.value,
       email: userData.email.value
     });
+    setIsProfileSaved(true);
   }
 
   return (
@@ -131,14 +133,33 @@ function Profile({ onUpdateUser, isLoading, onSignout }) {
             {userData.email.errorMessage}
           </span>
 
-          <button
-            className={`profile__edit-button ${isValid && !isLoading ? "" : "profile__edit-button_disabled"
-              }`}
-            type="submit"
-            disabled={disabled}
-          >
-            Редактировать
-          </button>
+          <div className="profile__submit-container">
+            {apiErrors.profile && !isProfileSaved && (
+
+              <span className="profile__error-message">
+                {apiErrors.profile.errorText === 'Validation failed'
+                  ? apiErrors.profile.joiMessage
+                  : apiErrors.profile.errorText}
+              </span>
+
+            )}
+
+            {isProfileSaved && (
+              <span className="profile__success-message">
+                Профиль успешно обновлен!
+              </span>
+            )}
+
+            <button
+              className={`profile__edit-button ${isValid && !isLoading ? "" : "profile__edit-button_disabled"
+                }`}
+              type="submit"
+              disabled={disabled}
+            >
+              Редактировать
+            </button>
+
+          </div>
 
           <Link className="profile__signout-link" to="/" onClick={onSignout}>Выйти из аккаунта</Link>
 

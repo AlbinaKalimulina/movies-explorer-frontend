@@ -76,8 +76,7 @@ function App() {
           setIsCheckToken(false)
         })
         .catch((error) => {
-          // console.log(error)
-          console.log(`Что-то пошло не так... (${error})`);
+          console.log(error)
           setIsCheckToken(false);
         })
     }
@@ -114,6 +113,20 @@ function App() {
         if (res) {
           navigate("/signin");
         }
+        // if (res) {
+        //   setLoggedIn(false)
+        //   auth
+        //   .login(email, password)
+        //     .then(res => {
+        //       localStorage.setItem('token', res.token)
+        //       setLoggedIn(true)
+        //       navigate('/movies')
+        //     })
+        //     .catch((err) => {
+        //       console.error(err)
+        //     })
+        //     .finally(() => setIsLoading(false))
+        // }
       })
       .catch((err) => {
         setApiErrors({ ...apiErrors, register: err });
@@ -168,25 +181,6 @@ function App() {
       .finally(() => setIsLoading(false))
   }
 
-  // useEffect(() => {
-  //   loggedIn &&
-  //     mainApi
-  //       .getUserInfo()
-  //       .then((user) => {
-  //         setCurrentUser(user);
-  //       })
-  //       .catch((err) => {
-  //         console.log(`Что-то пошло не так... (${err})`);
-  //       });
-
-  //   loggedIn &&
-  //     mainApi.getSavedMovies().then((data) => {
-  //       setSavedMovies(data);
-  //       localStorage.setItem('savedMovies', JSON.stringify(data));
-  //     });
-  // }, [loggedIn]);
-
-
   // Сохранение фильма
   function handleLikeMovie(movie) {
     const isSaved = savedMovies.some(element => movie.id === element.movieId);
@@ -220,42 +214,6 @@ function App() {
         console.error(err);
       })
   }
-
-
-  // useEffect(() => {
-  //   loggedIn &&
-  //     localStorage.setItem('savedMovies', savedMovies);
-  // }, [savedMovies, loggedIn]);
-
-
-  // // сохранение фильма
-  // function handleLikeMovie(data) {
-  //   console.log('handleLikeMovie called with data:', data);
-
-  //   const isLiked = savedMovies.some((element) => data.id === element.movieId);
-  //   const searchClickMovie = savedMovies.filter((movie) => movie.movieId === data.id);
-
-  //   if (isLiked) {
-  //     handleDeleteMovie(searchClickMovie[0]._id);
-  //   } else {
-  //     mainApi
-  //       .addMovie(data, localStorage.jwt)
-  //       .then((res) => {
-  //         console.log('addMovie response:', res);
-  //         setSavedMovies([res, ...savedMovies]);
-  //       })
-  //       .catch((err) => console.log(err));
-  //   }
-  // }
-  // // удаление фильма
-  // function handleDeleteMovie(deletemovieId) {
-  //   mainApi
-  //     .deleteMovie(deletemovieId, localStorage.jwt)
-  //     .then(() => {
-  //       setSavedMovies(savedMovies.filter(movie => { return movie._id !== deletemovieId }));
-  //     })
-  //     .catch((err) => console.log(err));
-  // };
 
 
   return (
