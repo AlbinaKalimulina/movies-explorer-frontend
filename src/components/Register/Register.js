@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../images/logo.svg";
 
-function Register({ onRegister, isLoading, apiErrors }) {
+function Register({ onRegister, isLoading }) {
 
   const [userData, setUserData] = useState({
     name: {
@@ -129,8 +129,6 @@ function Register({ onRegister, isLoading, apiErrors }) {
           <span className="register__error">
             {userData.password.errorMessage}
           </span>
-
-          <span className="form__api-error">{apiErrors.login.errorText}</span>
 
           <button
             className={`register__button ${isValid && !isLoading ? "" : "register__button_disabled"

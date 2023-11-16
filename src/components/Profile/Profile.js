@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import React, { useContext, useEffect, useState } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext.js";
 
-function Profile({ onUpdateUser, isLoading, onSignout, apiErrors }) {
+function Profile({ onUpdateUser, isLoading, onSignout }) {
 
   const currentUser = useContext(CurrentUserContext);
   const [isProfileSaved, setIsProfileSaved] = useState(false);
@@ -134,15 +134,6 @@ function Profile({ onUpdateUser, isLoading, onSignout, apiErrors }) {
           </span>
 
           <div className="profile__submit-container">
-            {apiErrors.profile && !isProfileSaved && (
-
-              <span className="profile__error-message">
-                {apiErrors.profile.errorText === 'Validation failed'
-                  ? apiErrors.profile.joiMessage
-                  : apiErrors.profile.errorText}
-              </span>
-
-            )}
 
             {isProfileSaved && (
               <span className="profile__success-message">

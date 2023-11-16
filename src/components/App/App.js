@@ -47,23 +47,6 @@ function App() {
   // стейты для фильмов
   const [savedMovies, setSavedMovies] = useState([]) // фильмы, сохраненные пользователем, значение по умолчанию массив
 
-  // ошибки API
-  const [apiErrors, setApiErrors] = useState({
-    login: {},
-    register: {},
-    profile: {}
-  });
-
-  // Сброс ошибок API при изменении маршрута
-  useEffect(() => {
-    setApiErrors({
-      login: {},
-      register: {},
-      profile: {}
-    });
-  }, [location]);
-
-
   // Получение информации о пользователе и сохраненных фильмах при входе в систему
   useEffect(() => {
     if (loggedIn) {
@@ -129,7 +112,6 @@ function App() {
         // }
       })
       .catch((err) => {
-        setApiErrors({ ...apiErrors, register: err });
         console.log(err);
       })
       .finally(() => setIsLoading(true));
@@ -148,7 +130,6 @@ function App() {
         }
       })
       .catch((err) => {
-        setApiErrors({ ...apiErrors, login: err });
         console.log(err);
       })
       .finally(() => setIsLoading(true));
@@ -167,7 +148,6 @@ function App() {
     setIsLoading(true);
     mainApi.setUserInfo(name, email)
       .then((res) => {
-        setApiErrors({ ...apiErrors, profile: {} });
         //обновляем стейт currentUser из полученных данных
         setCurrentUser({
           name: res.name,
@@ -175,7 +155,6 @@ function App() {
         });
       })
       .catch((err) => {
-        setApiErrors({ ...apiErrors, profile: err });
         console.log(err);
       })
       .finally(() => setIsLoading(false))
@@ -235,7 +214,6 @@ function App() {
               <Register
                 onRegister={handleRegister}
                 isLoading={isLoading}
-                apiErrors={apiErrors}
               />
             } />
 
@@ -243,7 +221,6 @@ function App() {
               <Login
                 onLogin={handleLogin}
                 isLoading={isLoading}
-                apiErrors={apiErrors}
               />
             } />
 
@@ -277,7 +254,6 @@ function App() {
                   isLoading={isLoading}
                   onUpdateUser={handleUpdateUser}
                   onSignout={handleSignOut}
-                  apiErrors={apiErrors}
                 />}
             />
 
