@@ -1,5 +1,5 @@
 import MoviesCard from "../MoviesCard/MoviesCard.js";
-import useResize from '../../hooks/useResize.js';
+import useResize from '../../../hooks/useResize.js';
 import { useEffect, useMemo, useState } from "react";
 import { useLocation } from "react-router-dom";
 
@@ -18,7 +18,7 @@ function MoviesCardList({ movies, savedMovies, onLikeMovie, onDeleteMovie, isSav
     }
     let countToRender = 12;
 
-    if (size.width < 1280) {
+    if (size.width < 1240) {
       countToRender = 8;
     }
 
@@ -47,7 +47,7 @@ function MoviesCardList({ movies, savedMovies, onLikeMovie, onDeleteMovie, isSav
         movies.length > moviesToRender.length && (
           <button
             onClick={() => {
-              setMoviesToAdd((prev) => prev + (size.width >= 1280 ? 3 : 2));
+              setMoviesToAdd((prev) => prev + (size.width >= 1241 ? 3 : 2));
             }}
             className="card-list__button"
           >
