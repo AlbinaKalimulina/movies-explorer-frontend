@@ -47,8 +47,7 @@ function Movies({ savedMovies, onLikeMovie }) {
       setIsLoading(true);
     }
 
-    setTimeout(
-      () => {
+    setTimeout(() => {
         let filtered = [];
         localStorage.setItem('searchQueryMovies', JSON.stringify(query));
 
@@ -109,6 +108,7 @@ function Movies({ savedMovies, onLikeMovie }) {
                 movies={filteredMovies}
                 savedMovies={savedMovies}
                 onLikeMovie={onLikeMovie}
+                isLoading={isLoading}
               />
             ) : (
               searchedMovies && (

@@ -1,5 +1,5 @@
+import React, { useEffect, useState } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
 
 import Header from "../Header/Header.js";
 import Main from "../Main/Main.js";
@@ -27,7 +27,6 @@ function App() {
 
   const { pathname } = useLocation();
   const navigate = useNavigate();
-  const location = useLocation();
 
   const withFooter =
     pathname === "/" || pathname === "/movies" || pathname === "/saved-movies";
@@ -96,6 +95,7 @@ function App() {
         if (res) {
           navigate("/signin");
         }
+
         // if (res) {
         //   setLoggedIn(false)
         //   auth
@@ -110,11 +110,16 @@ function App() {
         //     })
         //     .finally(() => setIsLoading(false))
         // }
+        // })
+
+      //   .then(() => {
+      //     handleLogin(email, password);
       })
+
       .catch((err) => {
         console.log(err);
       })
-      .finally(() => setIsLoading(true));
+      .finally(() => setIsLoading(false));
   }
 
   // Авторизация пользователя
@@ -124,15 +129,15 @@ function App() {
       .login(email, password)
       .then((res) => {
         if (res && res.token) {
-          localStorage.setItem('token', res.token)
           setLoggedIn(true)
-          navigate('/movies')
+          localStorage.setItem('token', res.token)
+          navigate('/movies', { replace: true })
         }
       })
       .catch((err) => {
         console.log(err);
       })
-      .finally(() => setIsLoading(true));
+      .finally(() => setIsLoading(false));
   }
 
   //Выход из системы, удаляем всё из localStorage
@@ -200,72 +205,72 @@ function App() {
 
       {/* {isCheckToken ? <Preloader /> : */}
 
-        <CurrentUserContext.Provider value={currentUser}>
+      <CurrentUserContext.Provider value={currentUser}>
 
-          {withHeader && <Header loggedIn={loggedIn} />}
+        {withHeader && <Header loggedIn={loggedIn} />}
 
-          <Routes>
+        <Routes>
 
-            <Route
-              path="/"
-              element={<Main />} />
+          <Route
+            path="/"
+            element={<Main />} />
 
-            <Route path="/signup" element={
-              <Register
-                onRegister={handleRegister}
+          <Route path="/signup" element={
+            <Register
+              onRegister={handleRegister}
+              isLoading={isLoading}
+            />
+          } />
+
+          <Route path="/signin" element={
+            <Login
+              onLogin={handleLogin}
+              isLoading={isLoading}
+            />
+          } />
+
+          <Route
+            path="/movies"
+            element={
+              <ProtectedRoute loggedIn={loggedIn}
+                element={Movies}
                 isLoading={isLoading}
-              />
-            } />
+                savedMovies={savedMovies}
+                onLikeMovie={handleLikeMovie}
+              />}
+          />
 
-            <Route path="/signin" element={
-              <Login
-                onLogin={handleLogin}
+          <Route
+            path="/saved-movies"
+            element={
+              <ProtectedRoute loggedIn={loggedIn}
+                element={SavedMovies}
                 isLoading={isLoading}
-              />
-            } />
-
-            <Route
-              path="/movies"
-              element={
-                <ProtectedRoute loggedIn={loggedIn}
-                  element={Movies}
-                  isLoading={isLoading}
-                  savedMovies={savedMovies}
-                  onLikeMovie={handleLikeMovie}
-                />}
-            />
-
-            <Route
-              path="/saved-movies"
-              element={
-                <ProtectedRoute loggedIn={loggedIn}
-                  element={SavedMovies}
-                  isLoading={isLoading}
-                  savedMovies={savedMovies}
-                  onDeleteMovie={handleDeleteMovie}
-                />}
-            />
+                savedMovies={savedMovies}
+                onDeleteMovie={handleDeleteMovie}
+              />}
+          />
 
 
-            <Route path="/profile"
-              element={
-                <ProtectedRoute loggedIn={loggedIn}
-                  element={Profile}
-                  isLoading={isLoading}
-                  onUpdateUser={handleUpdateUser}
-                  onSignout={handleSignOut}
-                />}
-            />
+          <Route path="/profile"
+            element={
+              <ProtectedRoute loggedIn={loggedIn}
+                element={Profile}
+                isLoading={isLoading}
+                onUpdateUser={handleUpdateUser}
+                onSignout={handleSignOut}
+              />}
+          />
 
-            <Route
-              path="*"
-              element={<PageNotFound />} />
+          <Route
+            path="*"
+            element={<PageNotFound />} />
 
-          </Routes>
+        </Routes>
 
-          {withFooter && <Footer />}
+        {withFooter && <Footer />}
 
-        </CurrentUserContext.Provider>
+      </CurrentUserContext.Provider>
       {/* } */}
     </div>
   );
