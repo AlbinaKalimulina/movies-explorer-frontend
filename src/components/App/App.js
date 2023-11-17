@@ -39,9 +39,8 @@ function App() {
 
   // стейты для пользователя
   const [currentUser, setCurrentUser] = useState({})//сюда будем класть текущего пользователя, его значение по умолчанию объект
-  const [loggedIn, setLoggedIn] = useState(false) //статус входа в систему
+  const [loggedIn, setLoggedIn] = useState(!!localStorage.getItem('token')) //статус входа в систему
   const [isLoading, setIsLoading] = useState(false) //отвечает за отправку, изменяется в момент отправки
-  const [isCheckToken, setIsCheckToken] = useState(true) //проверяет токен при каждом входе
 
   // стейты для фильмов
   const [savedMovies, setSavedMovies] = useState([]) // фильмы, сохраненные пользователем, значение по умолчанию массив
@@ -53,13 +52,9 @@ function App() {
         .then(([dataUser, dataMovies]) => {
           setCurrentUser(dataUser)
           setSavedMovies(dataMovies)
-          // localStorage.setItem('savedMovies', JSON.stringify(dataMovies));
-          setLoggedIn(true)
-          setIsCheckToken(false)
         })
         .catch((error) => {
           console.log(error)
-          setIsCheckToken(false);
         })
     }
   }, [loggedIn])
@@ -87,33 +82,12 @@ function App() {
   }, []);
 
   // Регистрация пользователя
-  function handleRegister(name, email, password) {
+  function handleRegister(data) {
     setIsLoading(true);
     auth
-      .register(name, email, password)
-      .then((res) => {
-        if (res) {
-          navigate("/signin");
-        }
-
-        // if (res) {
-        //   setLoggedIn(false)
-        //   auth
-        //   .login(email, password)
-        //     .then(res => {
-        //       localStorage.setItem('token', res.token)
-        //       setLoggedIn(true)
-        //       navigate('/movies')
-        //     })
-        //     .catch((err) => {
-        //       console.error(err)
-        //     })
-        //     .finally(() => setIsLoading(false))
-        // }
-        // })
-
-        //   .then(() => {
-        //     handleLogin(email, password);
+      .register(data)
+      .then(() => {
+        handleLogin(data);
       })
 
       .catch((err) => {
@@ -123,10 +97,10 @@ function App() {
   }
 
   // Авторизация пользователя
-  function handleLogin(email, password) {
+  function handleLogin(data) {
     setIsLoading(true);
     auth
-      .login(email, password)
+      .login({ email: data.email, password: data.password })
       .then((res) => {
         if (res && res.token) {
           setLoggedIn(true)
