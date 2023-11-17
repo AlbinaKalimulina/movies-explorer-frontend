@@ -95,7 +95,7 @@ textarea:focus {
 }
 
 .register__input_error {
-  color: #EE3465;
+  color: #FF4062;
 }
 
 .register__error {
@@ -131,7 +131,7 @@ textarea:focus {
   transition: opacity 0.3s;
 }
 
-.register__button_disabled  {
+.register__button_disabled {
   color: #C2C2C2;
   background-color: #F8F8F8;
   cursor: default;

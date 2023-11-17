@@ -232,3 +232,14 @@ textarea:focus {
   }
 
 }
+
+.search-form__error {
+  margin: 0;
+  padding: 0;
+  margin-top: 12px;
+  height: 12px;
+  color: #FF4062;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: normal;
+}
