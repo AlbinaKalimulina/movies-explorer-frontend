@@ -5,7 +5,7 @@ import Preloader from "./Preloader/Preloader.js";
 
 import moviesApi from '../../utils/MoviesApi';
 
-function Movies({ savedMovies, onLikeMovie }) {
+function Movies({ savedMovies, onSaveMovie }) {
   const [filteredMovies, setFilteredMovies] = useState([]); // массив отфильтрованных фильмов
   const searchedMovies = localStorage.getItem('searchedMovies'); // данные о поисковом запросе из локального хранилища
   const queries = localStorage.getItem('searchQueryMovies'); // данные об отфильтрованных фильмах из локального хранилища
@@ -95,7 +95,7 @@ function Movies({ savedMovies, onLikeMovie }) {
               <MoviesCardList
                 movies={filteredMovies}
                 savedMovies={savedMovies}
-                onLikeMovie={onLikeMovie}
+                onSaveMovie={onSaveMovie}
                 isLoading={isLoading}
               />
             ) : (

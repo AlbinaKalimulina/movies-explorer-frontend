@@ -101,7 +101,6 @@ function Profile({ onUpdateUser, isLoading, onSignout }) {
               type="text"
               name="name"
               placeholder="Введите имя"
-              // pattern="^[A-Za-zА-Яа-яЁё\\-\\s]+$"
               pattern="^[а-яё]+(?:[ -]{1}[а-яё]*)?$"
               minLength={2}
               maxLength={20}

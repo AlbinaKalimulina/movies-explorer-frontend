@@ -20,9 +20,6 @@ import CurrentUserContext from "../../contexts/CurrentUserContext.js"
 import mainApi from "../../utils/MainApi.js";
 import * as auth from "../../utils/auth.js";
 
-
-import Preloader from "../Movies/Preloader/Preloader.js";
-
 function App() {
 
   const { pathname } = useLocation();
@@ -140,7 +137,7 @@ function App() {
   }
 
   // Сохранение фильма
-  function handleLikeMovie(movie) {
+  function handleSaveMovie(movie) {
     const isSaved = savedMovies.some(element => movie.id === element.movieId);
     if (!isSaved) {
       mainApi
@@ -177,8 +174,6 @@ function App() {
   return (
     <div className="page">
 
-      {/* {isCheckToken ? <Preloader /> : */}
-
       <CurrentUserContext.Provider value={currentUser}>
 
         {withHeader && <Header loggedIn={loggedIn} />}
@@ -210,7 +205,7 @@ function App() {
                 element={Movies}
                 isLoading={isLoading}
                 savedMovies={savedMovies}
-                onLikeMovie={handleLikeMovie}
+                onSaveMovie={handleSaveMovie}
               />}
           />
 
@@ -245,7 +240,7 @@ function App() {
         {withFooter && <Footer />}
 
       </CurrentUserContext.Provider>
-      {/* } */}
+
     </div>
   );
 };

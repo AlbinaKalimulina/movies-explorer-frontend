@@ -3,7 +3,7 @@ import useScreenResize from '../../../hooks/useScreenResize.js';
 import { useEffect, useMemo, useState } from "react";
 import { useLocation } from "react-router-dom";
 
-function MoviesCardList({ movies, savedMovies, onLikeMovie, onDeleteMovie, isSavedMoviesPage }) {
+function MoviesCardList({ movies, savedMovies, onSaveMovie, onDeleteMovie, isSavedMoviesPage }) {
   let size = useScreenResize();
   const [moviesToAdd, setMoviesToAdd] = useState(0);
   const location = useLocation();
@@ -39,7 +39,7 @@ function MoviesCardList({ movies, savedMovies, onLikeMovie, onDeleteMovie, isSav
               key={movie.id || movie.movieId}
               movie={movie}
               savedMovies={savedMovies}
-              onLikeMovie={onLikeMovie}
+              onSaveMovie={onSaveMovie}
               onDeleteMovie={onDeleteMovie}
             />
           );

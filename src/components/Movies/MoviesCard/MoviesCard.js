@@ -2,7 +2,7 @@ import React, { useState, useMemo } from "react";
 import { useLocation } from "react-router-dom";
 
 
-function MoviesCard({ movie, savedMovies, onLikeMovie, onDeleteMovie }) {
+function MoviesCard({ movie, savedMovies, onSaveMovie, onDeleteMovie }) {
 
   const [isHovered, setIsHovered] = useState(false);
   const location = useLocation();
@@ -48,7 +48,7 @@ function MoviesCard({ movie, savedMovies, onLikeMovie, onDeleteMovie }) {
 
         {isLikeButton && (
           <button
-            onClick={() => onLikeMovie(movie, isLiked, savedMovie?._id)}
+            onClick={() => onSaveMovie(movie, isLiked, savedMovie?._id)}
             className={`card__like-button ${isLiked ? 'card__like-button_liked' : ''}`}
             style={{ display: isHovered || window.innerWidth <= 767 ? 'block' : 'none' }}
           />
