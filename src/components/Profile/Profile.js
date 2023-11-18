@@ -124,7 +124,7 @@ function Profile({ onUpdateUser, isLoading, onSignout }) {
               name="email"
               placeholder="Введите e-mail"
               className="profile__input"
-              pattern="([A-z0-9_.-]{1,})@([A-z0-9_.-]{1,}).([A-z]{2,8})"
+              pattern={"^\\S+@\\S+\\.\\S+$"}
               value={userData.email.value || ""}
               onChange={handleChange}
             />
