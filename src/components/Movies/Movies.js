@@ -18,29 +18,32 @@ function Movies({ savedMovies, onSaveMovie }) {
   const filterMovies = (query) => {
     setIsLoading(true);
 
-    moviesApi.getMovies().then((movies) => {
+    moviesApi.getMovies()
+      .then((movies) => {
+        let filtered = [];
+        localStorage.setItem('searchQueryMovies', JSON.stringify(query));
 
-      let filtered = [];
-      localStorage.setItem('searchQueryMovies', JSON.stringify(query));
-
-      if (query.isShortFilmChecked) {
-        filtered = movies.filter((m) => {
-          return (
-            m.duration <= SHORT_FILM_DURATION && m.nameRU.toLowerCase().trim().includes(query.searchText.toLowerCase())
-          );
-        });
-      } else {
-        filtered = movies.filter((m) => {
-          return m.nameRU.toLowerCase().trim().includes(query.searchText.toLowerCase());
-        });
-      }
-      setFilteredMovies(filtered);
-      localStorage.setItem('searchedMovies', JSON.stringify(filtered));
-      setIsLoading(false);
-    }).catch((error) => {
-      console.log(error);
-      setIsLoading(false);
-    });
+        if (query.isShortFilmChecked) {
+          filtered = movies.filter((m) => {
+            return (
+              m.duration <= SHORT_FILM_DURATION && m.nameRU.toLowerCase().trim().includes(query.searchText.toLowerCase())
+            );
+          });
+        } else {
+          filtered = movies.filter((m) => {
+            return m.nameRU.toLowerCase().trim().includes(query.searchText.toLowerCase());
+          });
+        }
+        setFilteredMovies(filtered);
+        localStorage.setItem('searchedMovies', JSON.stringify(filtered));
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   // Установка отфильтрованных фильмов из локального хранилища

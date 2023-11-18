@@ -78,20 +78,17 @@ function App() {
     }
   }, []);
 
-  // Регистрация пользователя
   function handleRegister(data) {
     setIsLoading(true);
     auth
       .register(data)
-      .then(() => {
-        handleLogin(data);
-      })
-
+      .then(() => handleLogin(data))
       .catch((err) => {
         console.log(err);
       })
       .finally(() => setIsLoading(false));
   }
+
 
   // Авторизация пользователя
   function handleLogin(data) {
@@ -142,17 +139,13 @@ function App() {
     if (!isSaved) {
       mainApi
         .addMovie(movie, localStorage.token)
-        .then((res) => {
-          setSavedMovies([res, ...savedMovies])
-        })
+        .then((res) => setSavedMovies([res, ...savedMovies]))
         .catch((err) => {
           console.error(err);
-        })
+        });
     } else {
-      const seachSavedMovie = savedMovies.filter((element) => {
-        return element.movieId === movie.id
-      })
-      handleDeleteMovie(seachSavedMovie[0]._id)
+      const seachSavedMovie = savedMovies.filter((element) => element.movieId === movie.id);
+      handleDeleteMovie(seachSavedMovie[0]._id);
     }
   }
 
@@ -160,16 +153,11 @@ function App() {
   function handleDeleteMovie(savedMovieId) {
     mainApi
       .deleteMovie(savedMovieId, localStorage.token)
-      .then(() => {
-        setSavedMovies(savedMovies.filter(movie => {
-          return movie._id !== savedMovieId
-        }))
-      })
+      .then(() => setSavedMovies(savedMovies.filter(movie => movie._id !== savedMovieId)))
       .catch((err) => {
         console.error(err);
-      })
+      });
   }
-
 
   return (
     <div className="page">
