@@ -5,6 +5,8 @@ import Preloader from "./Preloader/Preloader.js";
 
 import moviesApi from '../../utils/MoviesApi';
 
+import { SHORT_FILM_DURATION } from '../../utils/constants.js';
+
 function Movies({ savedMovies, onSaveMovie }) {
   const [filteredMovies, setFilteredMovies] = useState([]); // массив отфильтрованных фильмов
   const searchedMovies = localStorage.getItem('searchedMovies'); // данные о поисковом запросе из локального хранилища
@@ -24,7 +26,7 @@ function Movies({ savedMovies, onSaveMovie }) {
       if (query.isShortFilmChecked) {
         filtered = movies.filter((m) => {
           return (
-            m.duration <= 40 && m.nameRU.toLowerCase().trim().includes(query.searchText.toLowerCase())
+            m.duration <= SHORT_FILM_DURATION && m.nameRU.toLowerCase().trim().includes(query.searchText.toLowerCase())
           );
         });
       } else {

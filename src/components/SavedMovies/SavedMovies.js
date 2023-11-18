@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import SearchForm from "../Movies/SearchForm/SearchForm.js";
 import MoviesCardList from "../Movies/MoviesCardList/MoviesCardList.js";
 
+import { SHORT_FILM_DURATION } from '../../utils/constants.js';
+
 function SavedMovies({ savedMovies, onDeleteMovie }) {
   const [filteredMovies, setFilteredMovies] = useState([]); //хранение отфильтрованных фильмов
 
@@ -44,7 +46,7 @@ function SavedMovies({ savedMovies, onDeleteMovie }) {
 
     if (query.isShortFilmChecked) {
       filtered = savedMovies.filter((m) => (
-        m.duration <= 40 &&
+        m.duration <= SHORT_FILM_DURATION &&
         m.nameRU.toLowerCase().trim().includes(query.searchText.toLowerCase())
       ));
     } else {
