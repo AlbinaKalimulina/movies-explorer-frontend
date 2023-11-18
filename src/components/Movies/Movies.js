@@ -11,51 +11,35 @@ function Movies({ savedMovies, onSaveMovie }) {
   const queries = localStorage.getItem('searchQueryMovies'); // данные об отфильтрованных фильмах из локального хранилища
   const [searchQuery, setSearchQuery] = useState({}); // состояние текущего поискового запроса
   const [isLoading, setIsLoading] = useState(false); // состояние загрузки данных
-  const [movies, setMovies] = useState([]); // состояние для хранения полного списка фильмов
-
-  // Загрузка полного списка фильмов из внешнего API при первом поиске
-  const fetchMovies = async () => {
-    try {
-      const moviesData = await moviesApi.getMovies();
-      setMovies(moviesData);
-      localStorage.setItem('movies', JSON.stringify(moviesData));
-    } catch (error) {
-      console.error('Error fetching movies:', error);
-    }
-  };
 
   // Функция для фильтрации фильмов
   const filterMovies = (query) => {
     setIsLoading(true);
-    setSearchQuery(query);
 
-    setTimeout(() => {
+    moviesApi.getMovies().then((movies) => {
+
       let filtered = [];
-
       localStorage.setItem('searchQueryMovies', JSON.stringify(query));
 
       if (query.isShortFilmChecked) {
-        filtered = movies.filter((m) => m.duration <= 40 && m.nameRU.toLowerCase().trim().includes(query.searchText.toLowerCase()));
+        filtered = movies.filter((m) => {
+          return (
+            m.duration <= 40 && m.nameRU.toLowerCase().trim().includes(query.searchText.toLowerCase())
+          );
+        });
       } else {
-        filtered = movies.filter((m) => m.nameRU.toLowerCase().trim().includes(query.searchText.toLowerCase()));
+        filtered = movies.filter((m) => {
+          return m.nameRU.toLowerCase().trim().includes(query.searchText.toLowerCase());
+        });
       }
-
       setFilteredMovies(filtered);
       localStorage.setItem('searchedMovies', JSON.stringify(filtered));
       setIsLoading(false);
-    }, filteredMovies.length ? 0 : 300);
+    }).catch((error) => {
+      console.log(error);
+      setIsLoading(false);
+    });
   };
-
-  // Загрузка фильмов при первом поиске
-  useEffect(() => {
-    const storedMovies = JSON.parse(localStorage.getItem('movies'));
-
-    if (storedMovies && storedMovies.length > 0) {
-      setMovies(storedMovies);
-    } else {
-      fetchMovies();
-    }
-  }, []);
 
   // Установка отфильтрованных фильмов из локального хранилища
   useEffect(() => {
