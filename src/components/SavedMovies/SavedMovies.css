@@ -18,3 +18,10 @@
     max-width: 768px;
   }
 }
+
+.saved-movies__not-found {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  text-align: center;
+}

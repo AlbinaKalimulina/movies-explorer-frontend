@@ -1,6 +1,5 @@
 .nav {
   display: flex;
-  /* gap: 20px; */
   align-items: center;
   text-align: center;
   list-style-type: none;
@@ -113,6 +112,11 @@
 .nav__account-icon:hover {
   cursor: pointer;
   opacity: 0.8;
+}
+
+.nav__account-icon-black {
+  background: url('../../images/accoun_black.png') no-repeat center;
+  background-color: #000000;
 }
 
 .burger__button {
