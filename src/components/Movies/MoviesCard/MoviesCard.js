@@ -57,10 +57,11 @@ function MoviesCard({ movie, savedMovies, onSaveMovie, onDeleteMovie }) {
         <p className="card__duration">{normalizedDuration}</p>
 
         {isLikeButton && (
+
           <button
             onClick={() => onSaveMovie(movie, isLiked, savedMovie?._id)}
             className={`card__like-button ${isLiked ? 'card__like-button_liked' : ''}`}
-            style={{ display: isHovered || window.innerWidth <= 767 ? 'block' : 'none' }}
+            style={{ display: isHovered || isLiked || window.innerWidth <= 767 ? 'block' : 'none' }}
           />
         )}
 
